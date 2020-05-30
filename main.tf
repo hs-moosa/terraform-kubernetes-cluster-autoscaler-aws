@@ -78,6 +78,12 @@ resource "kubernetes_cluster_role" "cluster_autoscaler" {
     resources = ["jobs"]
     verbs = ["get", "list", "watch", "patch"]
   }
+
+  rule {
+    api_groups = ["storage.k8s.io"]
+    resources = ["csinodes"]
+    verbs = ["watch", "list", "get"]
+  }
 }
 
 resource "kubernetes_role" "cluster_autoscaler" {
